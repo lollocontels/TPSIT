@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Indirizzo IP</title>
+</head>
+<body>
+
+    <h2>Calcolo IP</h2>
+
+    IP:
+    <input type="text" id="ip" value="192.168.1.10">
+
+    <br><br>
+
+    Prefix Length:
+    <input type="number" id="pl" value="24">
+
+    <br><br>
+
+    <button onclick="calcola()">Calcola</button>
+
+    <br><br>
+
+    IP in binario:
+    <input type="text" id="binario" size="40">
+
+    <br><br>
+
+    Subnet Mask:
+    <input type="text" id="mask">
+
+    <script>
+
+    function calcola() {
+
+        let ip = document.getElementById("ip").value;
+        let pl = Number(document.getElementById("pl").value);
+
+        let n1 = "";
+        let n2 = "";
+        let n3 = "";
+        let n4 = "";
+
+        let punto = 0;
+
+        for (let i = 0; i < ip.length; i++) {
+            if (ip[i] == ".") {
+                punto++;
+            } else {
+                if (punto == 0) n1 = n1 + ip[i];
+                if (punto == 1) n2 = n2 + ip[i];
+                if (punto == 2) n3 = n3 + ip[i];
+                if (punto == 3) n4 = n4 + ip[i];
+            }
+        }
+
+        let numeri = [Number(n1), Number(n2), Number(n3), Number(n4)];
+        let binario = "";
+
+        for (let i = 0; i < 4; i++) {
+            let n = numeri[i];
+            let b = "";
+
+            for (let j = 0; j < 8; j++) {
+                b = (n % 2) + b;
+                n = Math.floor(n / 2);
+            }
+
+            binario = binario + b;
+
+            if (i < 3) {
+                binario = binario + ".";
+            }
+        }
+
+        document.getElementById("binario").value = binario;
+
+        let mask = "";
+        let bit = pl;
+
+        for (let i = 0; i < 4; i++) {
+            let valore = 0;
+
+            for (let j = 0; j < 8; j++) {
+                valore = valore * 2;
+
+                if (bit > 0) {
+                    valore = valore + 1;
+                    bit--;
+                }
+            }
+
+            mask = mask + valore;
+
+            if (i < 3) {
+                mask = mask + ".";
+            }
+        }
+
+        document.getElementById("mask").value = mask;
+
+    }
+
+    </script>
+
+</body>
+</html>
