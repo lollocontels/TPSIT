@@ -1,1 +1,80 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inserimento dati</title>
+</head>
+<body>
+
+<h2>Inserimento dati</h2>
+
+Nome: <input type="text" id="nome"><br><br>
+
+Cognome: <input type="text" id="cognome"><br><br>
+
+Età: <input type="number" id="eta"><br><br>
+
+Sesso:
+<input type="radio" name="sesso" value="Maschio"> Maschio
+<input type="radio" name="sesso" value="Femmina"> Femmina
+<br><br>
+
+Indirizzo: <input type="text" id="indirizzo"><br><br>
+
+Città: <input type="text" id="citta"><br><br>
+
+Provincia: <input type="text" id="provincia"><br><br>
+
+Sport praticati: <input type="text" id="sport"><br><br>
+
+Commenti:<br>
+<textarea id="commenti"></textarea>
+<br><br>
+
+<input type="button" value="INVIA" onclick="stampa()">
+
+<h2>Dati inseriti</h2>
+
+<table border="1" id="tabella"></table>
+
+<script>
+
+function stampa() {
+
+    let nome = document.getElementById("nome").value;
+    let cognome = document.getElementById("cognome").value;
+    let eta = document.getElementById("eta").value;
+    let indirizzo = document.getElementById("indirizzo").value;
+    let citta = document.getElementById("citta").value;
+    let provincia = document.getElementById("provincia").value;
+    let sport = document.getElementById("sport").value;
+    let commenti = document.getElementById("commenti").value;
+
+    let sesso = "";
+
+    if (document.getElementsByName("sesso")[0].checked == true) {
+        sesso = "Maschio";
+    }
+    else if (document.getElementsByName("sesso")[1].checked == true) {
+        sesso = "Femmina";
+    }
+
+    document.getElementById("tabella").innerHTML =
+    
+    "<tr><th>Campo</th><th>Dato</th></tr>" +
+    "<tr><td>Nome</td><td>" + nome + "</td></tr>" +
+    "<tr><td>Cognome</td><td>" + cognome + "</td></tr>" +
+    "<tr><td>Età</td><td>" + eta + "</td></tr>" +
+    "<tr><td>Sesso</td><td>" + sesso + "</td></tr>" +
+    "<tr><td>Indirizzo</td><td>" + indirizzo + "</td></tr>" +
+    "<tr><td>Città</td><td>" + citta + "</td></tr>" +
+    "<tr><td>Provincia</td><td>" + provincia + "</td></tr>" +
+    "<tr><td>Sport</td><td>" + sport + "</td></tr>" +
+    "<tr><td>Commenti</td><td>" + commenti + "</td></tr>";
+
+}
+
+</script>
+
+</body>
+</html>
