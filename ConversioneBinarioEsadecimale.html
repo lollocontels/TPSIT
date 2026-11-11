@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversione binario-esadecimale</title>
+</head>
+<body>
+
+    <h2>Convertitore Binario - Esadecimale</h2>
+
+    <p>Inserisci una stringa binaria:</p>
+
+    <input type="text" id="binario">
+
+    <button onclick="converti()">Converti</button>
+
+    <p id="risultato"></p>
+
+    <script>
+        function converti() {
+
+            let numero = document.getElementById("binario").value;
+
+            let decimale = parseInt(numero, 2);
+
+            let esadecimale = decimale.toString(16);
+
+            document.getElementById("risultato").innerHTML =
+                "Il numero esadecimale è: " + esadecimale.toUpperCase();
+
+        }
+    </script>
+
+</body>
+</html>
